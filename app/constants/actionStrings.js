@@ -1,0 +1,11 @@
+export const resetStoreString = 'RESET';
+export const isLoadingString = 'LOADER';
+export const loginString = 'SIGN_IN';
+export const updateAuthUserString = 'UPDATE_AUTH_USER';
+export const signUpString = 'SIGN_UP';
+export const otpVerifyString = 'OTP_VERIFY';
+export const updateProfileString = 'UPDATE_PROFILE';
+export const logOutString = 'LOGOUT';
+export const getScoreViaUserIdString = 'GET_SCORE_VIA_USER_ID';
+export const getAllQuizCategoriesString = 'GET_ALL_QUIZ_CATEGORIES';
+export const getAllQuizViaCategoryIdString = 'GET_ALL_QUIZ_VIA_ID_CATEGORY_ID';
