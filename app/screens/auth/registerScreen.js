@@ -19,7 +19,7 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object({
   firstName: Yup.string()
     .trim()
-    .min(3, 'More than 2 characters only!')
+    .min(4, 'More than 3 characters only!')
     .required('First Name is required!'),
   lastName: Yup.string()
     .trim()
