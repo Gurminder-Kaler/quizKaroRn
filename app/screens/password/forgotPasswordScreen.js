@@ -58,6 +58,7 @@ export const ForgotPasswordScreen = ({navigation}) => {
           return (
             <>
               <View style={styles.body}>
+
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>
                     Enter your email
@@ -75,6 +76,7 @@ export const ForgotPasswordScreen = ({navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <TouchableOpacity onPress={handleSubmit}>
                     <Text style={styles.button}>
@@ -84,7 +86,7 @@ export const ForgotPasswordScreen = ({navigation}) => {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={styles.extraInputBox}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('registerScreen')}>
                     <Text style={styles.bottomText}>
@@ -92,6 +94,7 @@ export const ForgotPasswordScreen = ({navigation}) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
+                
               </View>
             </>
           );
@@ -118,6 +121,9 @@ const styles = StyleSheet.create({
   inputBox: {
     margin: 5,
     padding: 5,
+  },
+  extraInputBox: {
+    margin: 25,
   },
   error: {
     color: 'red',

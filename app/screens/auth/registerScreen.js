@@ -76,7 +76,7 @@ export const RegisterScreen = ({navigation}) => {
           handleChange,
           handleBlur,
           handleSubmit,
-          setFieldValue
+          setFieldValue,
         }) => {
           return (
             <>
@@ -128,7 +128,7 @@ export const RegisterScreen = ({navigation}) => {
                   onValueChange={value => {
                     console.log('value RNPickerSelect', value);
                     if (value !== null) {
-                      setFieldValue('gender', value)
+                      setFieldValue('gender', value);
                       console.log('INNER INNDER qweqwewq');
                     }
                   }}
@@ -221,13 +221,13 @@ export const RegisterScreen = ({navigation}) => {
         }}
       </Formik>
 
-      <View style={styles.inputBox}>
+      <View style={styles.extraInputBox}>
         <TouchableOpacity onPress={() => navigation.navigate('loginScreen')}>
           <Text style={styles.bottomText}>Already a member? Login now</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.inputBox}>
+      <View style={styles.extraInputBox}>
         <TouchableOpacity
           onPress={() => navigation.navigate('forgotPasswordScreen')}>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
@@ -250,6 +250,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 19,
+  },
+  extraInputBox: {
+    margin: 25,
   },
   inputBox: {
     margin: 5,

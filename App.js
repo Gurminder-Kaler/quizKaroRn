@@ -15,6 +15,7 @@ import SelectQuizCategoryScreen from './app/screens/quiz/selectQuizCategoryScree
 import SelectQuizViaCategoryIdScreen from './app/screens/quiz/selectQuizViaCategoryIdScreen';
 import ScoreBoardScreen from './app/screens/quiz/scoreBoardScreen';
 import HomeScreen from './app/screens/homeScreen';
+// import PracticeScreen from './app/screens/practiceScreen';
 
 const App = () => {
   let auth = useSelector(state => state.auth);
@@ -25,6 +26,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen
+          name="practiceScreen"
+          options={isLoggedIn ? {title: 'Home'} : {title: 'Practice'}}
+          component={isLoggedIn ? HomeScreen : PracticeScreen}
+        /> */}
         <Stack.Screen
           name="loginScreen"
           options={isLoggedIn ? {title: 'Home'} : {title: 'Login'}}

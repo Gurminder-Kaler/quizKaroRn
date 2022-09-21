@@ -63,6 +63,7 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
           return (
             <>
               <View style={styles.body}>
+                
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>
                     Enter your new password
@@ -82,6 +83,7 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>
                     Confirm the new password <RequiredSign />
@@ -100,6 +102,7 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <TouchableOpacity
                     onPress={
@@ -108,6 +111,7 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
                     <Text style={styles.button}>Update Password</Text>
                   </TouchableOpacity>
                 </View>
+
               </View>
             </>
           );
@@ -134,6 +138,9 @@ const styles = StyleSheet.create({
   inputBox: {
     margin: 5,
     padding: 5,
+  },
+  extraInputBox : {
+    margin: 35
   },
   error: {
     color: 'red',

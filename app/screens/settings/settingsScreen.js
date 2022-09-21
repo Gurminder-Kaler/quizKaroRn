@@ -25,6 +25,7 @@ export const SettingsScreen = ({navigation}) => {
 
   return (
     <ScrollView contentContainerStyle={styles.body}>
+
       <View style={styles.inputBox}>
         <TouchableOpacity onPress={performLogout}>
           <Text style={styles.logoutButton}>
@@ -32,6 +33,7 @@ export const SettingsScreen = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </View>
+      
     </ScrollView>
   );
 };

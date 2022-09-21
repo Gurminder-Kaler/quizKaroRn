@@ -72,9 +72,14 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
           return (
             <>
               <View style={styles.body}>
+                
                 <View style={styles.inputBox}>
-                  <Text style={styles.label}>OTP sent at <Text style={styles.greenText}>{route.params.email}</Text></Text>
+                  <Text style={styles.label}>
+                    OTP sent at{' '}
+                    <Text style={styles.greenText}>{route.params.email}</Text>
+                  </Text>
                 </View>
+
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>
                     Enter your OTP
@@ -93,6 +98,7 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <TouchableOpacity onPress={handleSubmit}>
                     <Text style={styles.button}>
@@ -101,6 +107,7 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
+
                 <View style={styles.inputBox}>
                   <TouchableOpacity
                     onPress={() => resendOtp(route.params.email)}>
@@ -111,7 +118,7 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={styles.extraInputBox}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('registerScreen')}>
                     <Text style={styles.bottomText}>
@@ -119,6 +126,7 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
                     </Text>
                   </TouchableOpacity>
                 </View>
+
               </View>
             </>
           );
@@ -142,8 +150,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 19,
   },
+  extraInputBox: {
+    margin: 35,
+  },
   inputBox: {
-    margin: 5,
+    margin: 11,
     padding: 5,
   },
   error: {
@@ -153,7 +164,7 @@ const styles = StyleSheet.create({
   greenText: {
     color: 'green',
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   input: {
     borderColor: '#00000043',

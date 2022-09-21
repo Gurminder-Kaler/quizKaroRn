@@ -20,6 +20,7 @@ export const HomeScreen = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.body}>
       <Text style={styles.score}>Score : {'14'}</Text>
+
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => navigation.navigate('scoreBoardScreen')}
@@ -46,6 +47,7 @@ export const HomeScreen = ({navigation}) => {
           <FontAwesome name="cog" size={80} color={'black'} />
         </TouchableOpacity>
       </View>
+      
     </ScrollView>
   );
 };

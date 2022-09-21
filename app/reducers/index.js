@@ -9,3 +9,12 @@ export default combineReducers({
   quiz,
   Loader,
 });
+
+
+{
+  auth: {
+    user: {
+      firstName: ''
+    }
+  }
+}

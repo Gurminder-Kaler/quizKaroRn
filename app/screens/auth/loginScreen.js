@@ -22,12 +22,11 @@ let validationSchema = Yup.object({
     .required('Email is required.'),
   password: Yup.string()
     .required('Password is required.')
-    .min(6, 'Password should be more than 5 characters.'),
 });
 export const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  // let formObject = {email: '', password: ''};
-  let formObject = {email: 'gold@gmail.com', password: '12345679'};
+  let formObject = {email: '', password: ''};
+  // let formObject = {email: 'gold@gmail.com', password: '12345679'};
 
   let performLogin = async values => {
     let payload = {
@@ -106,7 +105,7 @@ export const LoginScreen = ({navigation}) => {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={styles.extraInputBox}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('registerScreen')}>
                     <Text style={styles.bottomText}>
@@ -115,7 +114,7 @@ export const LoginScreen = ({navigation}) => {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={styles.extraInputBox}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('forgotPasswordScreen')}>
                     <Text style={styles.forgotPasswordText}>
@@ -149,6 +148,9 @@ const styles = StyleSheet.create({
   inputBox: {
     margin: 5,
     padding: 5,
+  },
+  extraInputBox: {
+    margin: 35,
   },
   error: {
     color: 'red',
