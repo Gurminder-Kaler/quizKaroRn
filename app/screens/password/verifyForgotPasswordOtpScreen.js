@@ -86,6 +86,7 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
                     your password
                   </Text>
                 </View>
+
                 <View style={styles.inputBox}>
                   <TextInput
                     style={styles.input}

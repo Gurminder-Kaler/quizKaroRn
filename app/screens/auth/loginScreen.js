@@ -21,9 +21,7 @@ let validationSchema = Yup.object({
     .trim()
     .email('Not a valid email.')
     .required('Email is required.'),
-  password: Yup.string()
-    .required('Password is required.')
-    .min(6, 'Password should be more than 5 characters.'),
+  password: Yup.string().required('Password is required.'),
 });
 export const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -118,7 +116,7 @@ export const LoginScreen = ({navigation}) => {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={styles.extraInputBox}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('forgotPasswordScreen')}>
                     <Text style={styles.forgotPasswordText}>
@@ -183,6 +181,9 @@ const styles = StyleSheet.create({
   inputBox: {
     margin: 5,
     padding: 10,
+  },
+  extraInputBox: {
+    margin: 35,
   },
   error: {
     color: 'tomato',

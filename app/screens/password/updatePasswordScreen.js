@@ -90,6 +90,7 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <TextInput
                     style={styles.input}
@@ -152,6 +153,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'teal',
     height: 150,
     width: 150,
+  },
+  extraInputBox: {
+    margin: 35,
   },
   error: {
     color: 'red',

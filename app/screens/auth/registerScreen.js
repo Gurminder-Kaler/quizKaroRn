@@ -19,7 +19,7 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object({
   firstName: Yup.string()
     .trim()
-    .min(3, 'More than 2 characters only!')
+    .min(4, 'More than 3 characters only!')
     .required('First Name is required!'),
   lastName: Yup.string()
     .trim()
@@ -221,7 +221,7 @@ export const RegisterScreen = ({navigation}) => {
         }}
       </Formik>
 
-      <View style={styles.inputBox}>
+      <View style={styles.extraInputBox}>
         <TouchableOpacity onPress={() => navigation.navigate('loginScreen')}>
           <Text style={styles.bottomText}>Already a member? Login now</Text>
         </TouchableOpacity>
@@ -243,6 +243,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 19,
+  },
+  extraInputBox: {
+    margin: 25,
   },
   inputBox: {
     margin: 5,

@@ -137,6 +137,9 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 10,
   },
+  extraInputBox: {
+    margin: 25,
+  },
   error: {
     color: 'tomato',
     fontSize: 14,

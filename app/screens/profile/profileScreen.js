@@ -56,6 +56,7 @@ export const ProfileScreen = ({navigation}) => {
           return (
             <>
               <View style={styles.body}>
+
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>Your Email</Text>
                   <TextInput
@@ -73,6 +74,7 @@ export const ProfileScreen = ({navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>
                     Your First Name
@@ -92,6 +94,7 @@ export const ProfileScreen = ({navigation}) => {
                     ''
                   )}
                 </View>
+
                 <View style={styles.inputBox}>
                   <Text style={styles.label}>
                     Your Last Name
@@ -111,17 +114,20 @@ export const ProfileScreen = ({navigation}) => {
                     ''
                   )}
                 </View>
+                
                 <View style={styles.inputBox}>
                   <TouchableOpacity onPress={handleSubmit}>
                     <Text style={styles.button}>Update</Text>
                   </TouchableOpacity>
                 </View>
+
                 <View style={styles.inputBox}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('updatePasswordScreen', {email : user.email})}>
                     <Text style={styles.passwordButton}>Change Password</Text>
                   </TouchableOpacity>
                 </View>
+                
               </View>
             </>
           );
@@ -184,10 +190,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     backgroundColor: '#00000062',
     color: 'white',
-    textAlign: 'center',
-  },
-  bottomText: {
-    fontSize: 18,
     textAlign: 'center',
   },
 });
