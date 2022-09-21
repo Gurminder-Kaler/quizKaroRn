@@ -76,7 +76,7 @@ export const RegisterScreen = ({navigation}) => {
           handleChange,
           handleBlur,
           handleSubmit,
-          setFieldValue
+          setFieldValue,
         }) => {
           return (
             <>
@@ -128,7 +128,7 @@ export const RegisterScreen = ({navigation}) => {
                   onValueChange={value => {
                     console.log('value RNPickerSelect', value);
                     if (value !== null) {
-                      setFieldValue('gender', value)
+                      setFieldValue('gender', value);
                       console.log('INNER INNDER qweqwewq');
                     }
                   }}
@@ -224,13 +224,6 @@ export const RegisterScreen = ({navigation}) => {
       <View style={styles.inputBox}>
         <TouchableOpacity onPress={() => navigation.navigate('loginScreen')}>
           <Text style={styles.bottomText}>Already a member? Login now</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.inputBox}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('forgotPasswordScreen')}>
-          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

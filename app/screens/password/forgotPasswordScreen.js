@@ -2,19 +2,18 @@ import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
-  Button,
+  Image,
   View,
   TextInput,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import RequiredSign from '../../utils/requiredSign';
 import {sendForgotPasswordOTPEmail} from '../../actions/authAction';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AsyncStorage from '@react-native-community/async-storage';
+//import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+//import AsyncStorage from '@react-native-community/async-storage';
 
 let validationSchema = Yup.object({
   email: Yup.string()
@@ -31,6 +30,7 @@ export const ForgotPasswordScreen = ({navigation}) => {
       email: values.email,
     };
     let response = await dispatch(sendForgotPasswordOTPEmail(payload));
+    console.log('Reseposne as,dasjkdjsakd', response);
     if (response && response.success) {
       navigation.navigate('verifyForgotPasswordOtpScreen', {
         email: values.email,
@@ -58,16 +58,24 @@ export const ForgotPasswordScreen = ({navigation}) => {
           return (
             <>
               <View style={styles.body}>
-                <View style={styles.inputBox}>
-                  <Text style={styles.label}>
-                    Enter your email
-                    <RequiredSign />
+                <View style={styles.imageView}>
+                  <Image
+                    source={require('../../../assets/images/forgotpassword.jpg')}
+                    style={styles.image}
+                  />
+                </View>
+                <View style={styles.textView}>
+                  <Text style={styles.text}>
+                    Don't worry, happens to the best of us
                   </Text>
+                </View>
+                <View style={styles.inputBox}>
                   <TextInput
                     style={styles.input}
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
                     autoCapitalize="none"
+                    placeholder="Email"
                   />
                   {touched.email && errors.email ? (
                     <Text style={styles.error}>{errors.email}</Text>
@@ -75,21 +83,18 @@ export const ForgotPasswordScreen = ({navigation}) => {
                     ''
                   )}
                 </View>
-                <View style={styles.inputBox}>
+
+                <View style={[styles.button, styles.shadowSm]}>
                   <TouchableOpacity onPress={handleSubmit}>
-                    <Text style={styles.button}>
-                      <MaterialCommunityIcons name="onepassword" size={25} color={'white'} />
-                      &nbsp;Send OTP on this email
-                    </Text>
+                    <Text style={styles.buttonText}>Send OTP</Text>
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={[styles.inputBox, styles.signUpView]}>
+                  <Text style={styles.bottomText}>Don't have an account ?</Text>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('registerScreen')}>
-                    <Text style={styles.bottomText}>
-                      New Member? Register now
-                    </Text>
+                    <Text style={styles.signUp}>Sign Up</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -104,44 +109,86 @@ export const ForgotPasswordScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#2a2a2a02',
+    backgroundColor: 'white',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
     padding: 16,
   },
-  required: {
-    color: 'red',
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
   },
-  label: {
-    fontSize: 19,
+  textView: {
+    margin: 4,
+    padding: 4,
+  },
+  text: {
+    color: '#7F8487',
+    textAlign: 'center',
+  },
+  image: {
+    backgroundColor: 'teal',
+    height: 150,
+    width: 150,
   },
   inputBox: {
     margin: 5,
-    padding: 5,
+    padding: 10,
   },
   error: {
-    color: 'red',
-    fontSize: 15,
+    color: 'tomato',
+    fontSize: 14,
+    padding: 5,
+    marginTop: 4,
   },
   input: {
-    borderColor: '#00000043',
-    borderWidth: 1,
     textAlign: 'left',
-    fontSize: 23,
-    borderRadius: 5,
-    padding: 5,
-    margin: 5,
+    fontSize: 20,
+    borderRadius: 2,
+    padding: 10,
+    color: '#413F42',
+    borderColor: '#413F42',
+    borderWidth: 0.5,
+    fontFamily: 'Raleway-Regular',
   },
   button: {
-    padding: 10,
-    fontSize: 24,
-    backgroundColor: 'green',
+    marginHorizontal: 15,
+    padding: 15,
+    backgroundColor: '#008B8B',
+    borderRadius: 2,
+    marginVertical: 10,
+  },
+  buttonText: {
     color: 'white',
     textAlign: 'center',
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontWeight: '500',
+  },
+  shadowSm: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   bottomText: {
-    fontSize: 18,
+    fontSize: 14,
     textAlign: 'center',
+    color: '#7F8487',
+  },
+  signUp: {
+    fontWeight: '700',
+    color: '#008B8B',
+    marginLeft: 4,
+  },
+  signUpView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
   },
 });
 export default ForgotPasswordScreen;

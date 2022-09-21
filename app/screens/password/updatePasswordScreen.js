@@ -4,10 +4,10 @@ import {
   Text,
   View,
   TextInput,
+  Image,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import RequiredSign from '../../utils/requiredSign';
 import {updatePassword} from '../../actions/authAction';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
@@ -63,17 +63,25 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
           return (
             <>
               <View style={styles.body}>
-                <View style={styles.inputBox}>
-                  <Text style={styles.label}>
-                    Enter your new password
-                    <RequiredSign />
+                <View style={styles.imageView}>
+                  <Image
+                    source={require('../../../assets/images/password.jpg')}
+                    style={styles.image}
+                  />
+                </View>
+                <View style={styles.textView}>
+                  <Text style={styles.checkMail}>Reset Password</Text>
+                  <Text style={styles.text}>
+                    Create your new password to log into your account
                   </Text>
+                </View>
+                <View style={styles.inputBox}>
                   <TextInput
                     style={styles.input}
                     autoCapitalize="none"
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
-                    placeholder={'Enter Your Password'}
+                    placeholder={'New password'}
                     secureTextEntry={true}
                   />
                   {touched.password && errors.password ? (
@@ -83,15 +91,12 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
                   )}
                 </View>
                 <View style={styles.inputBox}>
-                  <Text style={styles.label}>
-                    Confirm the new password <RequiredSign />
-                  </Text>
                   <TextInput
                     style={styles.input}
                     autoCapitalize="none"
                     onChangeText={handleChange('confirmPassword')}
                     onBlur={handleBlur('confirmPassword')}
-                    placeholder={'Enter Your confirmPassword'}
+                    placeholder={'Confirm password'}
                     secureTextEntry={true}
                   />
                   {touched.confirmPassword && errors.confirmPassword ? (
@@ -100,12 +105,12 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
                     ''
                   )}
                 </View>
-                <View style={styles.inputBox}>
+                <View style={[styles.button, styles.shadowSm]}>
                   <TouchableOpacity
                     onPress={
                       isSubmitting == false ? handleSubmit : handleSubmit
                     }>
-                    <Text style={styles.button}>Update Password</Text>
+                    <Text style={styles.buttonText}>Reset</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -120,44 +125,113 @@ export const UpdatePasswordScreen = ({route, navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#2a2a2a02',
+    backgroundColor: 'white',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
     padding: 16,
   },
-  required: {
-    color: 'red',
-  },
-  label: {
-    fontSize: 19,
-  },
   inputBox: {
     margin: 5,
-    padding: 5,
+    padding: 10,
+  },
+  textView: {
+    padding: 4,
+  },
+  text: {
+    color: '#7F9489',
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  image: {
+    backgroundColor: 'teal',
+    height: 150,
+    width: 150,
   },
   error: {
     color: 'red',
     fontSize: 15,
   },
+  greenText: {
+    color: 'green',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
   input: {
-    borderColor: '#00000043',
-    borderWidth: 1,
     textAlign: 'left',
-    fontSize: 23,
-    borderRadius: 5,
-    padding: 5,
-    margin: 5,
+    fontSize: 20,
+    borderRadius: 2,
+    padding: 10,
+    color: '#413F42',
+    borderColor: '#413F42',
+    borderWidth: 0.5,
+    fontFamily: 'Raleway-Regular',
   },
   button: {
+    marginHorizontal: 15,
+    padding: 15,
+    backgroundColor: '#008B8B',
+    borderRadius: 2,
+    marginVertical: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontWeight: '500',
+  },
+  shadowSm: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  resendButton: {
     padding: 10,
     fontSize: 24,
-    backgroundColor: 'green',
+    backgroundColor: 'black',
     color: 'white',
     textAlign: 'center',
   },
   bottomText: {
     fontSize: 18,
     textAlign: 'center',
+  },
+  checkMail: {
+    fontSize: 28,
+    color: '#333333',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  bottomText: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#7F8487',
+  },
+  resendText: {
+    fontWeight: '700',
+    color: '#333333',
+    marginLeft: 4,
+    fontSize: 18,
+  },
+  signUp: {
+    fontWeight: '700',
+    color: '#008B8B',
+    marginLeft: 4,
+  },
+  signUpView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
   },
 });
 export default UpdatePasswordScreen;

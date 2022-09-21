@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   TextInput,
   ScrollView,
   TouchableOpacity,
@@ -72,20 +73,27 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
           return (
             <>
               <View style={styles.body}>
-                <View style={styles.inputBox}>
-                  <Text style={styles.label}>OTP sent at <Text style={styles.greenText}>{route.params.email}</Text></Text>
+                <View style={styles.imageView}>
+                  <Image
+                    source={require('../../../assets/images/email.jpg')}
+                    style={styles.image}
+                  />
+                </View>
+                <View style={styles.textView}>
+                  <Text style={styles.checkMail}>Check your mail</Text>
+                  <Text style={styles.text}>
+                    We have sent a verification code to your mail for recovering
+                    your password
+                  </Text>
                 </View>
                 <View style={styles.inputBox}>
-                  <Text style={styles.label}>
-                    Enter your OTP
-                    <RequiredSign />
-                  </Text>
                   <TextInput
                     style={styles.input}
                     keyboardType="numeric"
                     onChangeText={handleChange('otp')}
                     onBlur={handleBlur('otp')}
                     autoCapitalize="none"
+                    placeholder="Enter OTP"
                   />
                   {touched.otp && errors.otp ? (
                     <Text style={styles.error}>{errors.otp}</Text>
@@ -93,30 +101,25 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
                     ''
                   )}
                 </View>
-                <View style={styles.inputBox}>
+
+                <View style={[styles.button, styles.shadowSm]}>
                   <TouchableOpacity onPress={handleSubmit}>
-                    <Text style={styles.button}>
-                      <AntDesign name="check" size={30} color={'white'} />
-                      &nbsp;Verify OTP
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.inputBox}>
-                  <TouchableOpacity
-                    onPress={() => resendOtp(route.params.email)}>
-                    <Text style={styles.resendButton}>
-                      <AntDesign name="retweet" size={30} color={'white'} />
-                      &nbsp;Resend OTP
-                    </Text>
+                    <Text style={styles.buttonText}>Verify OTP</Text>
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.inputBox}>
+                <View style={[styles.inputBox, styles.signUpView]}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('registerScreen')}>
-                    <Text style={styles.bottomText}>
-                      New Member? Register now
-                    </Text>
+                    onPress={() => resendOtp(route.params.email)}>
+                    <Text style={styles.resendText}>Resend</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={[styles.inputBox, styles.signUpView]}>
+                  <Text style={styles.bottomText}>Go back to</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('loginScreen')}>
+                    <Text style={styles.signUp}>Login</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -131,20 +134,34 @@ export const VerifyForgotPasswordOtpScreen = ({route, navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#2a2a2a02',
+    backgroundColor: 'white',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
     padding: 16,
   },
-  required: {
-    color: 'red',
-  },
-  label: {
-    fontSize: 19,
-  },
   inputBox: {
     margin: 5,
-    padding: 5,
+    padding: 10,
+  },
+  textView: {
+    margin: 4,
+    padding: 4,
+  },
+  text: {
+    color: '#7F9489',
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  image: {
+    backgroundColor: 'teal',
+    height: 150,
+    width: 150,
   },
   error: {
     color: 'red',
@@ -153,23 +170,37 @@ const styles = StyleSheet.create({
   greenText: {
     color: 'green',
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   input: {
-    borderColor: '#00000043',
-    borderWidth: 1,
     textAlign: 'left',
-    fontSize: 23,
-    borderRadius: 5,
-    padding: 5,
-    margin: 5,
+    fontSize: 20,
+    borderRadius: 2,
+    padding: 10,
+    color: '#413F42',
+    borderColor: '#413F42',
+    borderWidth: 0.5,
+    fontFamily: 'Raleway-Regular',
   },
   button: {
-    padding: 10,
-    fontSize: 24,
-    backgroundColor: 'green',
+    marginHorizontal: 15,
+    padding: 15,
+    backgroundColor: '#008B8B',
+    borderRadius: 2,
+    marginVertical: 10,
+  },
+  buttonText: {
     color: 'white',
     textAlign: 'center',
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontWeight: '500',
+  },
+  shadowSm: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   resendButton: {
     padding: 10,
@@ -181,6 +212,36 @@ const styles = StyleSheet.create({
   bottomText: {
     fontSize: 18,
     textAlign: 'center',
+  },
+  checkMail: {
+    fontSize: 28,
+    color: '#333333',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  bottomText: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#7F8487',
+  },
+  resendText: {
+    fontWeight: '700',
+    color: '#333333',
+    marginLeft: 4,
+    fontSize: 18,
+  },
+  signUp: {
+    fontWeight: '700',
+    color: '#008B8B',
+    marginLeft: 4,
+  },
+  signUpView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
   },
 });
 export default VerifyForgotPasswordOtpScreen;

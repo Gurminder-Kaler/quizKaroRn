@@ -5,9 +5,10 @@ import {
   View,
   TextInput,
   ScrollView,
+  Image,
   TouchableOpacity,
 } from 'react-native';
-import RequiredSign from '../../utils/requiredSign';
+//import RequiredSign from '../../utils/requiredSign';
 import {loginUser} from '../../actions/authAction';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
@@ -27,7 +28,7 @@ let validationSchema = Yup.object({
 export const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
   // let formObject = {email: '', password: ''};
-  let formObject = {email: 'gold@gmail.com', password: '12345679'};
+  let formObject = {email: 'test@yopmail.com', password: '12345678'};
 
   let performLogin = async values => {
     let payload = {
@@ -62,16 +63,30 @@ export const LoginScreen = ({navigation}) => {
           return (
             <>
               <View style={styles.body}>
-                <View style={styles.inputBox}>
-                  <Text style={styles.label}>
-                    Enter your email
-                    <RequiredSign />
+                <View style={styles.imageView}>
+                  <Image
+                    source={require('../../../assets/images/image2.jpg')}
+                    style={styles.image}
+                  />
+                </View>
+
+                <View style={styles.brandView}>
+                  <Text style={[styles.brandText, styles.shadowSm]}>
+                    Quizkaro
                   </Text>
+                </View>
+                <View style={styles.welcomeView}>
+                  <Text style={styles.welcomeText}>
+                    Welcome back, log in into your account
+                  </Text>
+                </View>
+                <View style={styles.inputBox}>
                   <TextInput
                     style={styles.input}
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
                     autoCapitalize="none"
+                    placeholder="Email"
                   />
                   {touched.email && errors.email ? (
                     <Text style={styles.error}>{errors.email}</Text>
@@ -80,16 +95,13 @@ export const LoginScreen = ({navigation}) => {
                   )}
                 </View>
                 <View style={styles.inputBox}>
-                  <Text style={styles.label}>
-                    Enter your password
-                    <RequiredSign />
-                  </Text>
                   <TextInput
                     style={styles.input}
                     autoCapitalize="none"
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
                     secureTextEntry={true}
+                    placeholder="Password"
                   />
                   {touched.password && errors.password ? (
                     <Text style={styles.error}>{errors.password}</Text>
@@ -97,21 +109,12 @@ export const LoginScreen = ({navigation}) => {
                     ''
                   )}
                 </View>
-                <View style={styles.inputBox}>
+                <View style={[styles.button, styles.shadowSm]}>
                   <TouchableOpacity
                     onPress={
                       isSubmitting == false ? handleSubmit : handleSubmit
                     }>
-                    <Text style={styles.button}> <AntDesign name="login" size={25} color={'white'} />&nbsp;Login</Text>
-                  </TouchableOpacity>
-                </View>
-
-                <View style={styles.inputBox}>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('registerScreen')}>
-                    <Text style={styles.bottomText}>
-                      New Member? Register now
-                    </Text>
+                    <Text style={styles.buttonText}>Login</Text>
                   </TouchableOpacity>
                 </View>
 
@@ -119,8 +122,16 @@ export const LoginScreen = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => navigation.navigate('forgotPasswordScreen')}>
                     <Text style={styles.forgotPasswordText}>
-                      Forgot Password?
+                      Reset Password
                     </Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={[styles.inputBox, styles.signUpView]}>
+                  <Text style={styles.bottomText}>Don't have an account ?</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('registerScreen')}>
+                    <Text style={styles.signUp}>Sign Up</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -139,45 +150,97 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'flex-start',
     padding: 16,
+    backgroundColor: 'white',
   },
-  required: {
-    color: 'red',
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  label: {
-    fontSize: 19,
+  image: {
+    backgroundColor: 'teal',
+    height: 150,
+    width: 150,
+  },
+  brandView: {
+    padding: 2,
+  },
+  brandText: {
+    fontSize: 48,
+    textAlign: 'center',
+    letterSpacing: 4,
+    color: '#008B8B',
+    fontFamily: 'Pacifico-Regular',
+  },
+  welcomeView: {
+    margin: 4,
+    padding: 4,
+  },
+  welcomeText: {
+    color: '#7F8487',
+    textAlign: 'center',
   },
   inputBox: {
     margin: 5,
-    padding: 5,
+    padding: 10,
   },
   error: {
-    color: 'red',
-    fontSize: 15,
+    color: 'tomato',
+    fontSize: 14,
+    padding: 5,
+    marginTop: 4,
   },
   input: {
-    borderColor: '#00000043',
-    borderWidth: 1,
     textAlign: 'left',
-    fontSize: 23,
-    borderRadius: 5,
-    padding: 5,
-    margin: 5,
+    fontSize: 20,
+    borderRadius: 2,
+    padding: 10,
+    color: '#413F42',
+    borderColor: '#413F42',
+    borderWidth: 0.5,
+    fontFamily: 'Raleway-Regular',
   },
   button: {
-    padding: 10,
-    fontSize: 24,
-    backgroundColor: 'green',
+    marginHorizontal: 15,
+    padding: 15,
+    backgroundColor: '#008B8B',
+    borderRadius: 2,
+    marginVertical: 10,
+  },
+  shadowSm: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  buttonText: {
     color: 'white',
     textAlign: 'center',
+    textTransform: 'uppercase',
+    fontSize: 16,
+    letterSpacing: 0.5,
+    fontWeight: '500',
   },
   bottomText: {
-    fontSize: 18,
+    fontSize: 14,
     textAlign: 'center',
+    color: '#7F8487',
+  },
+  signUp: {
+    fontWeight: '700',
+    color: '#008B8B',
+    marginLeft: 4,
+  },
+  signUpView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   forgotPasswordText: {
-    fontSize: 18,
+    fontSize: 14,
     textAlign: 'center',
-    color: '#ff000092',
+    color: 'tomato',
   },
 });
 export default LoginScreen;
